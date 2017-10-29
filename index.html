@@ -1,0 +1,295 @@
+﻿<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">  
+		<link rel="stylesheet" href="css/style.css">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script>
+			function AjaxFormRequest(result_id,formMain,url) {
+				jQuery.ajax({
+						url:     url,
+						type:     "POST",
+						dataType: "html",
+						data: jQuery("#"+formMain).serialize(), 
+						success: function(response) {
+						document.getElementById(result_id).innerHTML = response;
+					},
+					error: function(response) {
+						document.getElementById(result_id).innerHTML = "<p>Возникла ошибка при отправке формы. Попробуйте еще раз</p>";
+					}
+				});
+
+				 $(':input','#formMain')
+					.not(':button, :submit, :reset, :hidden')
+					.val('')
+					.removeAttr('checked')
+					.removeAttr('selected');
+			}
+		</script>
+		<title>Купить арматуру в компании - "АрсПромМеталл"</title>
+			<style>
+				.modalDialog {
+					position: fixed;
+					font-family: Arial, Helvetica, sans-serif;
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					background: rgba(0,0,0,0.8);
+					z-index: 99999;
+					-webkit-transition: opacity 400ms ease-in;
+					-moz-transition: opacity 400ms ease-in;
+					transition: opacity 400ms ease-in;
+					display: none;
+					pointer-events: none;
+				}
+
+				.modalDialog:target {
+					display: block;
+					pointer-events: auto;
+				}
+
+				.modalDialog > div {
+					text-align: center;
+					width: 600px;
+					position: relative;
+					margin: 10% auto;
+					padding: 5px 20px 13px 20px;
+					border-radius: 10px;
+					background: #fff;
+					background: -moz-linear-gradient(#fff, #999);
+					background: -webkit-linear-gradient(#fff, #999);
+					background: -o-linear-gradient(#fff, #999);
+				}
+
+				.close {
+					background: #606061;
+					color: #FFFFFF;
+					line-height: 25px;
+					position: absolute;
+					right: -12px;
+					text-align: center;
+					top: -10px;
+					width: 24px;
+					text-decoration: none;
+					font-weight: bold;
+					-webkit-border-radius: 12px;
+					-moz-border-radius: 12px;
+					border-radius: 12px;
+					-moz-box-shadow: 1px 1px 3px #000;
+					-webkit-box-shadow: 1px 1px 3px #000;
+					box-shadow: 1px 1px 3px #000;
+				}
+
+				.close:hover { 
+					background: #00d9ff; 
+				}
+			</style>
+		</head>
+	<body>
+		<!-- кнопка	 -->
+		<a href="#openModal" id="popup_toggle" style="position: fixed; z-index: 10;">
+			<div class="circlephone" style="transform-origin: center;"></div>
+			<div class="circle-fill" style="transform-origin: center;"></div>
+			<div class="img-circle" style="transform-origin: center;">
+				<div class="img-circleblock" style="transform-origin: center;">	</div>
+			</div>
+		</a>
+		
+		<div id="openModal" class="modalDialog">
+			<div>
+				<a href="#close" title="Закрыть" class="close">X</a>
+				<h2>Заказать бесплатную консультацию специалиста</h2>
+				<form id="form_mondal" action="send.php" method="post">
+					<input type="text" name="name" placeholder="Как вас зовут?" required>
+					<input type="text" name="phone" placeholder="Ваш номер телефона" required>
+					<br><input type="submit" value="Отправить" class="button" style="padding: 10px 50px 10px 50px;" border="0" >
+					<!-- <a href="#" id="button_order1" class="button">Заказать</a> -->
+				</a>
+				</form>
+			</div>
+		</div>
+
+		<header>
+			<div class="wrapper clearfix">
+				<img src="images/logotype.png">
+				<div style="display: inline-block">
+					<div id="button_list_price">
+						АрсПромМеталл 
+					</div>
+					<br>Есть <span class="orange">всe,</span> что вам <span class="orange">нужно!</span> 
+				</div>
+				<div style="display: inline-block; font-size: 12px; text-align: left;">
+					ООО «АрсПромМеталл»
+					<br>ИНН 6666666666КПП 666666666
+					<br>ОГРН 11111111111111КП0 22222222
+					<br>Юридический адрес
+					<br>620058 г. Екатеринбург пр-т.
+					<br>Колесникова 101 – 103
+					<br>Тел. 8 890 890 88 88
+					<br>e-mail:  <span class="orange">ArsPromMetall@APM.ru</span> 
+				</div>
+			</div>
+		</header>
+		<div id="screen_1" class="wrapper">
+			<video autoplay="" loop="" width="920px" height="512" poster="images/screen_1.jpg">
+				<source src="video/Удача.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+			</video>
+			<form id="form" action="send.php" method="post" style="position: relative; top: -352px">
+				<div id="result_screen_1" > </div> 
+				<p>Экономьте время и деньги!</p>
+				<p>Закажите бесплатную консультацию специалиста прямо сейчас:</p>
+				<input type="text" name="name" placeholder="Ваше имя" required>
+				<input type="text" name="phone" placeholder="Ваш телефон" required>
+				<br><input type="submit" value="Отправить" id="button_order1" class="button" style="padding: 10px 50px 10px 50px;" border="0" onclick="AjaxFormRequest('result_screen_1', 'form', 'form.php')">
+				<!-- <a href="#" id="button_order1" class="button">Заказать</a> -->
+				</a>
+			</form>
+		</div>
+		<div id="screen_2" class="wrapper clearfix">
+			<h1>Причины<span class="orange">, почему надо работать именно с нами:</span></h1>
+			<div id="causes">
+				<div>
+					<img src="images/causes_1.png">
+					Привлекательные <span class="orange">цены</span> для <span class="orange">Вас</span> ,
+					а также на основании счета конкурента реальной компании сделаем цену <span class="orange">ниже</span>. 
+				</div>
+				<div>
+					<img src="images/causes_2.png">
+					У нас <span class="orange">свой</span> автопарк поэтому <span class="orange">не бывает</span>
+					накладок с доставкой и ценой 
+					Вы останетесь <span class="orange">довольны</span>.
+				</div>
+				<div>
+					<img src="images/causes_3.png"><span class="orange">
+					Лично</span> присутствуем на разгрузке автомобиля. 
+				</div>
+				<div>
+					<img src="images/causes_4.png"><span class="orange">
+					Вся</span> продукция <span class="orange">сертифицирована</span> и 
+					<span class="orange">соответствует</span> ГОСТу.
+				</div>
+				<div>
+					<img src="images/causes_5.png"><span class="orange">
+					Наши</span> менеджеры <span class="orange">всегда</span> 
+					на связи и <span class="orange">полностью</span> ведут сделку, 
+					от <span class="orange">первого</span> звонка до <span class="orange">подписания</span> ТТН.
+				</div>
+				<div>
+					<img src="images/causes_6.png">
+					Поставка <span class="orange">по всей</span> России, а также <span class="orange">ЖД</span>  поставка.				
+				</div>
+				<div>
+					<img src="images/causes_7.png">
+					<span class="orange">Оптом</span> и в <span class="orange">розницу</span>.
+				</div>
+				<div>
+					<img src="images/causes_8.png">
+					<span class="orange">Дополнительная</span> услуга режим в <span class="orange">размер</span>. 
+				</div>
+			</div>
+			<p>
+		</div>
+		
+		<div id="screen_3" class="wrapper">
+			<h1>{<span class="orange" style="font-size: 28px;"> У НАС ЗАКАЗЫВАЮТ </span>}</h1>
+			<div id="block_product_order">
+				<div id="product">
+					<div>
+						<img src="images/jackdaw.png">	
+						<img src="images/product_1.png">
+						<br>18Б1 Г/К От 43000р.
+					</div>
+					
+					<div>
+						<img src="images/jackdaw.png">	
+						<img src="images/product_2.png">
+						<br>От 37000
+					</div>
+					
+					<div>
+						<img src="images/jackdaw.png">	
+						<img src="images/product_3.png">
+						<br>От 37000
+					</div>
+					
+					<br>
+					<div>
+						<img src="images/jackdaw.png">	
+						<img src="images/product_4.png">
+						<br>325*8 от 39500р.
+						<br>Э/С
+					</div>
+					
+					<div>
+						<img src="images/jackdaw.png">	
+						<img src="images/product_5.png">
+						<br>50*50*3 от 38000р.
+					</div>
+					
+					<div>
+						<img src="images/jackdaw.png">	
+						<img src="images/product_6.png">
+						<br>Ф 10 от 31800р
+					</div>				
+				</div>
+				<div id="order">
+					<a href="#openModal" id="button_order2" class="button">Заказать</a>
+					<img src="images/arrow.png" style="position:relative; left: -50px;">
+				</div>
+			</div>
+			<h2 >{<span class="orange" style="font-size: 28px;">МЫ ГАРАНТИРУЕМ, ЧТО ВЫ ОСТАНЕТЕСЬ ДОВОЛЬНЫ!</span>}</h2> 
+		</div>
+		<div id="screen_4" class="wrapper">
+			<form id="form1" action="send.php" method="post">
+				<p style="margin-top:25px; margin-bottom:25px;">
+					Закажите бесплатную консультацию специалиста:
+				</p>
+				<input type="text" name="name" placeholder="Ваше имя" required>
+				<input type="text" name="phone" placeholder="Ваш телефон" required>
+				<!-- <br><button class="button button_order1" type="submit" border="0">Заказать</button> -->
+				<br><input type="submit" value="Заказать" id="button_order1" class="button" style="border: 50px 50px 50px 50px" border="0"> 
+				<!-- <a href="#" id="button_order1" class="button">Заказать</a>	 -->				
+			</form>
+			<h1>Отправь <span class="orange">заявку</span> на <span class="orange">металлопрокат</span>,
+			убедись в вышесказанных <span class="orange">словах!</span> </h1>	
+		</div>
+		<div id="screen_5" class="wrapper">
+			<h1>{<span class="orange">Наши сертификаты, допуски и заслуги.</span>}</h1>
+		</div>
+		<div id="screen_6" class="wrapper">
+			<h1>{<span class="orange">КОНТАКТЫ</span>}</h1>
+		</div>
+		<div id="screen_7" class="wrapper">
+			<table class="contacts">
+				<tr>
+					<td>
+						Менеджер Алексей 
+						<br>8 890 890 88 88</br>
+					</td>
+					<td>
+						Менеджер Сергей 
+						<br>8 890 890 88 88</br>
+					</td>
+					<td>
+						Менеджер Олег
+						<br>8 890 890 88 88</br>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div id="screen_8" class="wrapper">
+			<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=WVgQGCjcgg1AV-tOmRi8mZmNkat3KwsY&amp;width=940&amp;height=400&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true"></script>
+		</div>
+		
+		<footer class="wrapper">
+			<div style="margin-right: auto; margin-left: auto; margin-top: 300px; display: block; text-align: center">
+				<h1 style="font-size: 25px;">ОСТАЛИСЬ ВОПРОСЫ?  <span class="orange">ЗВОНИТЕ.</span> </h1> 
+				<p style="margin-top: 50px; font-size: 20px;">
+				<img src="images/telefon.png" style="position: relative; left: -20px; bottom: -10px;">8 890 890 88 88</p>
+				<a href="#openModal" id="button_order4" class="button">Заказать звонок</a>
+			</div>
+		</footer>		
+	</body>
+</html>
